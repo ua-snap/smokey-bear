@@ -1,0 +1,8 @@
+# ignore all generated PDF files
+GeoTIFF_Archive/*
+GeoTIFF_Products/*
+SHP_Products/*
+SHP_Upload/*
+
+# don’t ignore keep files
+!.keep
