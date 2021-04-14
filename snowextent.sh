@@ -24,6 +24,11 @@ else
     ENDDATE=${YEAR}${ENDMONTHDAY}
 fi
 
+# 0 = NoData
+# 1 = Water
+# 2 = Snow-Free
+# 3 = Ice
+# 4 = Snow
 SNOWCLASSES=("no data" "water" "snow-free" "ice" "snow")
 URL1="https://usicecenter.gov/File/DownloadProduct?products=%2Fims%2Fims_v3%2Fimstif%2F1km%2F${YEAR}&fName=NIC.IMS_v3_"
 #URL1="https://www.natice.noaa.gov/pub/ims/ims_v3/imstif/1km/${YEAR}/NIC.IMS_v3_"
@@ -78,6 +83,8 @@ while [[ ! $STARTDATE > $ENDDATE ]]; do
         rm $INFILE
         echo 
     fi
+    # TODO, this doesn't terminate the loop properly
+
     STARTDATE=`date -j -v+1d -f %Y%m%d $STARTDATE +%Y%m%d`
 done
 
