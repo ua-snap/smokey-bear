@@ -11,11 +11,11 @@ DEPLOYSUB=SHP_Upload
 DODOWNLOAD=1
 DOZIPS=0
 
-YEAR=2019
-STARTMONTHDAY=0101
-ENDMONTHDAY=0301
+YEAR=2021
+STARTMONTHDAY=0410
+ENDMONTHDAY=0413
 STARTDATE=${YEAR}${STARTMONTHDAY}
-DAYSBACK=6   # how many days back to generate a timeseries for
+DAYSBACK=0   # how many days back to generate a timeseries for
 
 if [[ $YEAR -eq 2021 ]]
 then
