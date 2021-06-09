@@ -3,7 +3,12 @@
 # Rebuilds TileCache layer.
 set -x
 
-source /root/.adminpass
+# Create a file in your $HOME directory containing an export
+# of the admin password.
+source ~/.adminpass
+
+# Activates the smokeybear Conda environment with GDAL installed.
+conda activate smokeybear
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	ymd=$( date -d "yesterday" '+%Y%m%d' )
