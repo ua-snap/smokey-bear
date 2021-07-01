@@ -28,7 +28,7 @@ akfile="${ymd}_spruce"
 akdownload="https://akff.mesowest.org/static/grids/tiff/${akfile}.tiff"
 wget -nc -P /tmp ${akdownload}
 akcoast=./shapefiles/Alaska_Coast_Simplified_POLYGON.shp
-gdalwarp -crop-to-cutline -cutline ${akcoast} -t_srs EPSG:3338 /tmp/${akfile}.tiff /tmp/spruceadj_3338.tif
+gdalwarp -crop_to_cutline -cutline ${akcoast} -t_srs EPSG:3338 /tmp/${akfile}.tiff /tmp/spruceadj_3338.tif
 mv /tmp/spruceadj_3338.tif $GEOSERVER_HOME/data_dir/data/alaska_wildfires/
 
 # Reseeds the tile cache
