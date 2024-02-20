@@ -3,6 +3,15 @@
 # Updates layer in GeoServer,
 # Rebuilds TileCache layer.
 
+# Check if an argument is provided
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <home_directory>"
+    exit 1
+fi
+
+# Access the first command-line argument
+home_directory=$1
+
 set -x
 
 # Create a file in your $HOME directory containing an export
@@ -10,6 +19,7 @@ set -x
 source ~/.adminpass
 
 # Activates the smokeybear Conda environment with GDAL installed.
+source $home_directory/miniconda3/bin/activate
 conda activate smokeybear
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -23,11 +33,13 @@ else
 	exit 1
 fi
 
+script_dir=$(dirname "$(readlink -f "$0")")
+GEOSERVER_HOME=/usr/share/geoserver
 
 akfile="${ymd}_spruce"
 akdownload="https://akff.mesowest.org/static/grids/tiff/${akfile}.tiff"
 wget -nc -P /tmp ${akdownload}
-akcoast=./shapefiles/Alaska_Coast_Simplified_POLYGON.shp
+akcoast="$script_dir/shapefiles/Alaska_Coast_Simplified_POLYGON.shp"
 gdalwarp -crop_to_cutline -cutline ${akcoast} -t_srs EPSG:3338 /tmp/${akfile}.tiff /tmp/spruceadj_3338.tif
 mv /tmp/spruceadj_3338.tif $GEOSERVER_HOME/data_dir/data/alaska_wildfires/
 
