@@ -3,15 +3,6 @@
 # Updates layer in GeoServer,
 # Rebuilds TileCache layer.
 
-# Check if an argument is provided
-if [ $# -eq 0 ]; then
-    echo "Usage: $0 <home_directory>"
-    exit 1
-fi
-
-# Access the first command-line argument
-home_directory=$1
-
 set -x
 
 # Create a file in your $HOME directory containing an export
@@ -19,7 +10,7 @@ set -x
 source ~/.adminpass
 
 # Activates the smokeybear Conda environment with GDAL installed.
-source $home_directory/miniconda3/bin/activate
+source /opt/miniconda3/bin/activate
 conda activate smokeybear
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
