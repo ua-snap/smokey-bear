@@ -9,7 +9,7 @@ source ~/.adminpass
 
 # Activates the smokeybear Conda environment with GDAL installed.
 source /opt/miniconda3/bin/activate
-conda activate smokeybear
+conda activate /home/snapdata/.conda/envs/smokeybear
 
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	ymd=$( date -d "yesterday" '+%Y%m%d' )
